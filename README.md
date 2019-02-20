@@ -8,3 +8,6 @@ git clone https://github.com/dennydap/mws-ghibli-openapi.git
 cd mws-ghibli-openapi
 npm install
 npm start
+
+# Demo
+[Click Here](http://dennydap.github.io/mws-ghibli-openapi)
