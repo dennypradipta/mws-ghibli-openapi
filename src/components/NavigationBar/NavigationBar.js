@@ -21,6 +21,9 @@ const NavigationBar = () => {
                 <Navbar.Item renderAs={Link} to="/films">
                   Film
                 </Navbar.Item>
+                <Navbar.Item renderAs={Link} to="/people">
+                  People
+                </Navbar.Item>
               </Navbar.Container>
             </Navbar.Menu>
           </Container>

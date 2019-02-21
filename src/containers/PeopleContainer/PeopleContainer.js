@@ -5,20 +5,20 @@ import Container from "react-bulma-components/lib/components/container";
 import Columns from "react-bulma-components/lib/components/columns";
 import Loader from "react-bulma-components/lib/components/loader";
 
-import FilmCard from "../../components/FilmCard";
+import PeopleCard from "../../components/PeopleCard/PeopleCard";
 
-export default class FilmContainer extends Component {
+export default class PeopleContainer extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      films: [],
+      peoples: [],
       isLoading: true
     };
   }
 
   componentDidMount() {
     let currentComponent = this;
-    fetch("https://ghibliapi.herokuapp.com/films").then(function(response) {
+    fetch("https://ghibliapi.herokuapp.com/people").then(function(response) {
       if (response.status !== 200) {
         console.log(
           "Looks like there was a problem. Status Code: " + response.status
@@ -29,7 +29,7 @@ export default class FilmContainer extends Component {
       // Examine the text in the response
       response.json().then(function(data) {
         currentComponent.setState({
-          films: data,
+          peoples: data,
           isLoading: false
         });
       });
@@ -40,7 +40,7 @@ export default class FilmContainer extends Component {
     return (
       <div>
         <Container>
-          <h1>List of Films</h1>
+          <h1>List of People</h1>
           <hr />
           {this.state.isLoading ? (
             <Loader
@@ -57,8 +57,8 @@ export default class FilmContainer extends Component {
             />
           ) : (
             <Columns gapless>
-              {this.state.films.map(film => {
-                return <FilmCard data={film} key={film.id} />;
+              {this.state.peoples.map(people => {
+                return <PeopleCard data={people} key={people.id} />;
               })}
             </Columns>
           )}

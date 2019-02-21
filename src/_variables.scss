@@ -52,3 +52,12 @@ body {
 a {
   text-decoration: none;
 }
+
+figure.is-rounded-image img {
+  border-radius: 50%;
+}
+
+figure.is-full-image {
+  width: 100%;
+  margin: 0;
+}

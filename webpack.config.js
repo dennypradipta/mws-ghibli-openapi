@@ -22,6 +22,10 @@ module.exports = {
             loader: "sass-loader"
           }
         ]
+      },
+      {
+        test: /\.(woff2?|jpe?g|png|gif|ico|svg)$/,
+        use: "file-loader?name=./images/[name].[ext]"
       }
     ]
   },

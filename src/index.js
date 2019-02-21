@@ -1,17 +1,9 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import { HashRouter as Router } from "react-router-dom";
 import "./_variables.scss";
 
-import RootContainer from "./containers/RootContainer";
+import RootContainer from "./containers/RootContainer/RootContainer";
 
-ReactDOM.render(
-  <div>
-    <Router>
-      <RootContainer />
-    </Router>
-  </div>,
-  document.getElementById("app")
-);
+ReactDOM.render(<RootContainer />, document.getElementById("app"));
 
 module.hot.accept();

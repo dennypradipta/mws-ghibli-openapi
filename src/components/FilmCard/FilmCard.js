@@ -6,7 +6,7 @@ import Media from "react-bulma-components/lib/components/media";
 import Image from "react-bulma-components/lib/components/image";
 import Heading from "react-bulma-components/lib/components/heading";
 import Content from "react-bulma-components/lib/components/content";
-
+import Button from "react-bulma-components/lib/components/button";
 import Columns from "react-bulma-components/lib/components/columns";
 
 export default class FilmCard extends Component {
@@ -15,7 +15,6 @@ export default class FilmCard extends Component {
     this.state = {
       data: props.data
     };
-    console.log(this.state);
   }
 
   render() {
@@ -25,27 +24,14 @@ export default class FilmCard extends Component {
           <Card.Content>
             <Media>
               <Media.Item>
-                <Heading
-                  className="has-text-centered padding-bottom-lg"
-                  size={4}
-                >
-                  {this.state.data.title}
-                </Heading>
-                <Heading subtitle size={6}>
-                  {this.state.data.description}
-                </Heading>
+                <Image src="../../images/films.svg" className="is-full-image" />
               </Media.Item>
             </Media>
-            <Content>
-              <p>
-                Director: {this.state.data.director}
-                <br />
-                Producer: {this.state.data.producer}
-                <br />
-                Release Date: {this.state.data.release_date}
-                <br />
-                RottenTomatoes Score: {this.state.data.rt_score}
-              </p>
+            <Content className="has-text-centered">
+              <Heading size={4}>{this.state.data.title}</Heading>
+              <Button color="primary" outlined={false}>
+                Read More
+              </Button>
             </Content>
           </Card.Content>
         </Card>
