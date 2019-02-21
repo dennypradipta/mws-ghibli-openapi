@@ -7,6 +7,8 @@ import HomeContainer from "../HomeContainer/HomeContainer";
 import FilmContainer from "../FilmContainer/FilmContainer";
 import PeopleContainer from "../PeopleContainer/PeopleContainer";
 import LocationContainer from "../LocationContainer/LocationContainer";
+import SpeciesContainer from "../SpeciesContainer/SpeciesContainer";
+import VehiclesContainer from "../VehiclesContainer/VehiclesContainer";
 
 import Container from "react-bulma-components/lib/components/container";
 
@@ -22,6 +24,8 @@ export default class RootContainer extends Component {
               <Route path="/films" render={() => <FilmContainer />} />
               <Route path="/peoples" render={() => <PeopleContainer />} />
               <Route path="/locations" render={() => <LocationContainer />} />
+              <Route path="/species" render={() => <SpeciesContainer />} />
+              <Route path="/vehicles" render={() => <VehiclesContainer />} />
             </Switch>
           </Container>
         </Router>

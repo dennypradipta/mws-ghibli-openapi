@@ -5,20 +5,20 @@ import Container from "react-bulma-components/lib/components/container";
 import Columns from "react-bulma-components/lib/components/columns";
 import Loader from "react-bulma-components/lib/components/loader";
 
-import LocationCard from "../../components/LocationCard/LocationCard";
+import VehicleCard from "../../components/VehicleCard/VehicleCard";
 
-export default class PeopleContainer extends Component {
+export default class VehiclesContainer extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      peoples: [],
+      vehicles: [],
       isLoading: true
     };
   }
 
   componentWillMount() {
     let currentComponent = this;
-    fetch("https://ghibliapi.herokuapp.com/locations").then(function(response) {
+    fetch("https://ghibliapi.herokuapp.com/vehicles").then(function(response) {
       if (response.status !== 200) {
         console.log(
           "Looks like there was a problem. Status Code: " + response.status
@@ -29,7 +29,7 @@ export default class PeopleContainer extends Component {
       // Examine the text in the response
       response.json().then(function(data) {
         currentComponent.setState({
-          peoples: data,
+          vehicles: data,
           isLoading: false
         });
       });
@@ -40,7 +40,7 @@ export default class PeopleContainer extends Component {
     return (
       <div>
         <Container>
-          <h1>List of Locations</h1>
+          <h1>List of Vehicles</h1>
           <hr />
           {this.state.isLoading ? (
             <Loader
@@ -57,8 +57,8 @@ export default class PeopleContainer extends Component {
             />
           ) : (
             <Columns gapless>
-              {this.state.peoples.map(people => {
-                return <LocationCard data={people} key={people.id} />;
+              {this.state.vehicles.map(vehicle => {
+                return <VehicleCard data={vehicle} key={vehicle.id} />;
               })}
             </Columns>
           )}

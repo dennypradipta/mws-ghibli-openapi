@@ -10,12 +10,11 @@ import Button from "react-bulma-components/lib/components/button";
 
 import Columns from "react-bulma-components/lib/components/columns";
 
-export default class PeopleCard extends Component {
+export default class SpeciesCard extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      data: props.data,
-      speciesName: ""
+      data: props.data
     };
   }
 

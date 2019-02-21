@@ -16,7 +16,7 @@ export default class FilmContainer extends Component {
     };
   }
 
-  componentDidMount() {
+  componentWillMount() {
     let currentComponent = this;
     fetch("https://ghibliapi.herokuapp.com/films").then(function(response) {
       if (response.status !== 200) {

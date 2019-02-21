@@ -1,4 +1,5 @@
 const webpack = require("webpack");
+const CopyWebpackPlugin = require("copy-webpack-plugin");
 
 var config = {
   module: {}
@@ -42,7 +43,10 @@ var distConfig = Object.assign({}, config, {
     publicPath: "/",
     filename: "bundle.js"
   },
-  plugins: [new webpack.HotModuleReplacementPlugin()],
+  plugins: [
+    new webpack.HotModuleReplacementPlugin(),
+    new CopyWebpackPlugin([{ from: "src/images", to: "images" }])
+  ],
   devServer: {
     contentBase: "./dist",
     hot: true
@@ -82,6 +86,7 @@ var docsConfig = Object.assign({}, config, {
     extensions: ["*", ".js", ".jsx"],
     modules: ["node_modules", "src"]
   },
+  plugins: [new CopyWebpackPlugin([{ from: "src/images", to: "images" }])],
   output: {
     path: __dirname + "/docs",
     publicPath: "/",

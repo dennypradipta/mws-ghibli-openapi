@@ -27,6 +27,12 @@ const NavigationBar = () => {
                 <Navbar.Item renderAs={Link} to="/locations">
                   Locations
                 </Navbar.Item>
+                <Navbar.Item renderAs={Link} to="/species">
+                  Species
+                </Navbar.Item>
+                <Navbar.Item renderAs={Link} to="/vehicles">
+                  Vehicles
+                </Navbar.Item>
               </Navbar.Container>
             </Navbar.Menu>
           </Container>

@@ -16,7 +16,7 @@ export default class PeopleContainer extends Component {
     };
   }
 
-  componentDidMount() {
+  componentWillMount() {
     let currentComponent = this;
     fetch("https://ghibliapi.herokuapp.com/people").then(function(response) {
       if (response.status !== 200) {
