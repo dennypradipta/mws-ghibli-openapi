@@ -7,39 +7,14 @@ import Image from "react-bulma-components/lib/components/image";
 import Heading from "react-bulma-components/lib/components/heading";
 import Content from "react-bulma-components/lib/components/content";
 import Button from "react-bulma-components/lib/components/button";
-
 import Columns from "react-bulma-components/lib/components/columns";
 
-export default class PeopleCard extends Component {
+export default class LocationCard extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      data: props.data,
-      speciesName: ""
+      data: props.data
     };
-  }
-
-  getSpeciesById(speciesURL) {
-    let currentComponent = this;
-    fetch(speciesURL).then(function(response) {
-      if (response.status !== 200) {
-        console.log(
-          "Looks like there was a problem. Status Code: " + response.status
-        );
-        currentComponent.setState({
-          speciesName: "Species not found!"
-        });
-      }
-      response.json().then(function(data) {
-        currentComponent.setState({
-          speciesName: data.name
-        });
-      });
-    });
-  }
-
-  componentWillMount() {
-    this.getSpeciesById(this.state.data.species);
   }
 
   render() {
@@ -50,15 +25,13 @@ export default class PeopleCard extends Component {
             <Media>
               <Media.Item>
                 <Image
-                  src="../../images/peoples.svg"
+                  src="../../images/locations.svg"
                   className="is-full-image"
                 />
               </Media.Item>
             </Media>
             <Content className="has-text-centered">
-              <Heading className="has-text-centered" size={4}>
-                {this.state.data.name}
-              </Heading>
+              <Heading size={5}>{this.state.data.name}</Heading>
               <Button color="primary" outlined={false}>
                 Read More
               </Button>

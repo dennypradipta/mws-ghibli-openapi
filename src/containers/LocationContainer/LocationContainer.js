@@ -5,7 +5,7 @@ import Container from "react-bulma-components/lib/components/container";
 import Columns from "react-bulma-components/lib/components/columns";
 import Loader from "react-bulma-components/lib/components/loader";
 
-import PeopleCard from "../../components/PeopleCard/PeopleCard";
+import LocationCard from "../../components/LocationCard/LocationCard";
 
 export default class PeopleContainer extends Component {
   constructor(props) {
@@ -18,7 +18,7 @@ export default class PeopleContainer extends Component {
 
   componentDidMount() {
     let currentComponent = this;
-    fetch("https://ghibliapi.herokuapp.com/people").then(function(response) {
+    fetch("https://ghibliapi.herokuapp.com/locations").then(function(response) {
       if (response.status !== 200) {
         console.log(
           "Looks like there was a problem. Status Code: " + response.status
@@ -40,7 +40,7 @@ export default class PeopleContainer extends Component {
     return (
       <div>
         <Container>
-          <h1>List of Peoples</h1>
+          <h1>List of People</h1>
           <hr />
           {this.state.isLoading ? (
             <Loader
@@ -58,7 +58,7 @@ export default class PeopleContainer extends Component {
           ) : (
             <Columns gapless>
               {this.state.peoples.map(people => {
-                return <PeopleCard data={people} key={people.id} />;
+                return <LocationCard data={people} key={people.id} />;
               })}
             </Columns>
           )}

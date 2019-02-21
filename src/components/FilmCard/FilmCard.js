@@ -28,7 +28,7 @@ export default class FilmCard extends Component {
               </Media.Item>
             </Media>
             <Content className="has-text-centered">
-              <Heading size={4}>{this.state.data.title}</Heading>
+              <Heading size={5}>{this.state.data.title}</Heading>
               <Button color="primary" outlined={false}>
                 Read More
               </Button>
