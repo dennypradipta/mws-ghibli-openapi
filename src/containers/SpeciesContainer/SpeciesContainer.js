@@ -40,7 +40,9 @@ export default class SpeciesContainer extends Component {
     return (
       <div>
         <Container>
-          <h1>List of Species</h1>
+          <h1 className="has-text-centered has-text-left-desktop">
+            List of Species
+          </h1>
           <hr />
           {this.state.isLoading ? (
             <Loader

@@ -40,7 +40,9 @@ export default class VehiclesContainer extends Component {
     return (
       <div>
         <Container>
-          <h1>List of Vehicles</h1>
+          <h1 className="has-text-centered has-text-left-desktop">
+            List of Vehicles
+          </h1>
           <hr />
           {this.state.isLoading ? (
             <Loader

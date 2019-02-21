@@ -40,7 +40,9 @@ export default class FilmContainer extends Component {
     return (
       <div>
         <Container>
-          <h1>List of Films</h1>
+          <h1 className="has-text-centered has-text-left-desktop">
+            List of Films
+          </h1>
           <hr />
           {this.state.isLoading ? (
             <Loader
