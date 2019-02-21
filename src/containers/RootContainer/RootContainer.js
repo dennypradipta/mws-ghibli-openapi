@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Route, Switch } from "react-router-dom";
 import { HashRouter as Router } from "react-router-dom";
+import { spring, AnimatedSwitch } from "react-router-transition";
 
 import NavigationBar from "../../components/NavigationBar/NavigationBar";
 import HomeContainer from "../HomeContainer/HomeContainer";
@@ -19,14 +20,19 @@ export default class RootContainer extends Component {
         <Router>
           <Container fluid={true}>
             <NavigationBar />
-            <Switch>
+            <AnimatedSwitch
+              atEnter={{ opacity: 0 }}
+              atLeave={{ opacity: 0 }}
+              atActive={{ opacity: 1 }}
+              className="route-wrapper"
+            >
               <Route exact path="/" render={() => <HomeContainer />} />
               <Route path="/films" render={() => <FilmContainer />} />
               <Route path="/peoples" render={() => <PeopleContainer />} />
               <Route path="/locations" render={() => <LocationContainer />} />
               <Route path="/species" render={() => <SpeciesContainer />} />
               <Route path="/vehicles" render={() => <VehiclesContainer />} />
-            </Switch>
+            </AnimatedSwitch>
           </Container>
         </Router>
       </div>
