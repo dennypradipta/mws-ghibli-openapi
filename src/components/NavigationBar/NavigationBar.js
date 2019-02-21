@@ -39,14 +39,14 @@ export default class NavigationBar extends Component {
                   Denny Pradipta
                 </Navbar.Item>
                 <Navbar.Burger
-                  active={this.state.isBurgerOpened ? "true" : "false"}
+                  className={this.state.isBurgerOpened ? "is-active" : ""}
                   onClick={this.handleNavigationBurger}
                 />
               </Navbar.Brand>
               <Navbar.Menu
                 className={this.state.isBurgerOpened ? "is-active" : ""}
               >
-                <Navbar.Container>
+                <Navbar.Container position="end">
                   <Navbar.Item
                     renderAs={Link}
                     to="/films"
