@@ -59,7 +59,7 @@ export default class LocationContainer extends Component {
             />
           ) : (
             <Columns gapless>
-              {this.state.peoples.map(location => {
+              {this.state.locations.map(location => {
                 return (
                   <CustomCard
                     title={location.name}

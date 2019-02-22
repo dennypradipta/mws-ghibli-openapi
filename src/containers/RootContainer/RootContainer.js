@@ -1,7 +1,7 @@
 import React, { Component } from "react";
-import { Route, Switch } from "react-router-dom";
+import { Route } from "react-router-dom";
 import { HashRouter as Router } from "react-router-dom";
-import { spring, AnimatedSwitch } from "react-router-transition";
+import { AnimatedSwitch } from "react-router-transition";
 
 import NavigationBar from "../../components/NavigationBar/NavigationBar";
 import HomeContainer from "../HomeContainer/HomeContainer";
@@ -10,6 +10,7 @@ import PeopleContainer from "../PeopleContainer/PeopleContainer";
 import LocationContainer from "../LocationContainer/LocationContainer";
 import SpeciesContainer from "../SpeciesContainer/SpeciesContainer";
 import VehiclesContainer from "../VehiclesContainer/VehiclesContainer";
+import NotFoundContainer from "../NotFoundContainer/NotFoundContainer";
 
 import Container from "react-bulma-components/lib/components/container";
 
@@ -32,6 +33,7 @@ export default class RootContainer extends Component {
               <Route path="/locations" render={() => <LocationContainer />} />
               <Route path="/species" render={() => <SpeciesContainer />} />
               <Route path="/vehicles" render={() => <VehiclesContainer />} />
+              <Route render={() => <NotFoundContainer />} />
             </AnimatedSwitch>
           </Container>
         </Router>
