@@ -5,13 +5,13 @@ import Container from "react-bulma-components/lib/components/container";
 import Columns from "react-bulma-components/lib/components/columns";
 import Loader from "react-bulma-components/lib/components/loader";
 
-import LocationCard from "../../components/LocationCard/LocationCard";
+import CustomCard from "../../components/CustomCard/CustomCard";
 
-export default class PeopleContainer extends Component {
+export default class LocationContainer extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      peoples: [],
+      locations: [],
       isLoading: true
     };
   }
@@ -29,7 +29,7 @@ export default class PeopleContainer extends Component {
       // Examine the text in the response
       response.json().then(function(data) {
         currentComponent.setState({
-          peoples: data,
+          locations: data,
           isLoading: false
         });
       });
@@ -59,8 +59,14 @@ export default class PeopleContainer extends Component {
             />
           ) : (
             <Columns gapless>
-              {this.state.peoples.map(people => {
-                return <LocationCard data={people} key={people.id} />;
+              {this.state.peoples.map(location => {
+                return (
+                  <CustomCard
+                    title={location.name}
+                    url={"/location/" + location.id}
+                    key={location.id}
+                  />
+                );
               })}
             </Columns>
           )}

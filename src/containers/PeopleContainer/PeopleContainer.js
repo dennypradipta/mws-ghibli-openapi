@@ -5,7 +5,7 @@ import Container from "react-bulma-components/lib/components/container";
 import Columns from "react-bulma-components/lib/components/columns";
 import Loader from "react-bulma-components/lib/components/loader";
 
-import PeopleCard from "../../components/PeopleCard/PeopleCard";
+import CustomCard from "../../components/CustomCard/CustomCard";
 
 export default class PeopleContainer extends Component {
   constructor(props) {
@@ -60,7 +60,13 @@ export default class PeopleContainer extends Component {
           ) : (
             <Columns gapless>
               {this.state.peoples.map(people => {
-                return <PeopleCard data={people} key={people.id} />;
+                return (
+                  <CustomCard
+                    title={people.name}
+                    url={"/people/" + people.id}
+                    key={people.id}
+                  />
+                );
               })}
             </Columns>
           )}

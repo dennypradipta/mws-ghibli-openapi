@@ -5,7 +5,7 @@ import Container from "react-bulma-components/lib/components/container";
 import Columns from "react-bulma-components/lib/components/columns";
 import Loader from "react-bulma-components/lib/components/loader";
 
-import VehicleCard from "../../components/VehicleCard/VehicleCard";
+import CustomCard from "../../components/CustomCard/CustomCard";
 
 export default class VehiclesContainer extends Component {
   constructor(props) {
@@ -60,7 +60,13 @@ export default class VehiclesContainer extends Component {
           ) : (
             <Columns gapless>
               {this.state.vehicles.map(vehicle => {
-                return <VehicleCard data={vehicle} key={vehicle.id} />;
+                return (
+                  <CustomCard
+                    title={vehicle.name}
+                    url={"/vehicle/" + vehicle.id}
+                    key={vehicle.id}
+                  />
+                );
               })}
             </Columns>
           )}

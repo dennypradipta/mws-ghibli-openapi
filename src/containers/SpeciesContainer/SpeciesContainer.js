@@ -5,7 +5,7 @@ import Container from "react-bulma-components/lib/components/container";
 import Columns from "react-bulma-components/lib/components/columns";
 import Loader from "react-bulma-components/lib/components/loader";
 
-import SpeciesCard from "../../components/SpeciesCard/SpeciesCard";
+import CustomCard from "../../components/CustomCard/CustomCard";
 
 export default class SpeciesContainer extends Component {
   constructor(props) {
@@ -60,7 +60,13 @@ export default class SpeciesContainer extends Component {
           ) : (
             <Columns gapless>
               {this.state.species.map(species => {
-                return <SpeciesCard data={species} key={species.id} />;
+                return (
+                  <CustomCard
+                    title={species.name}
+                    url={"/species/" + species.id}
+                    key={species.id}
+                  />
+                );
               })}
             </Columns>
           )}

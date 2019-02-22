@@ -5,7 +5,7 @@ import Container from "react-bulma-components/lib/components/container";
 import Columns from "react-bulma-components/lib/components/columns";
 import Loader from "react-bulma-components/lib/components/loader";
 
-import FilmCard from "../../components/FilmCard/FilmCard";
+import CustomCard from "../../components/CustomCard/CustomCard";
 
 export default class FilmContainer extends Component {
   constructor(props) {
@@ -60,7 +60,13 @@ export default class FilmContainer extends Component {
           ) : (
             <Columns gapless>
               {this.state.films.map(film => {
-                return <FilmCard data={film} key={film.id} />;
+                return (
+                  <CustomCard
+                    title={film.title}
+                    url={"/film/" + film.id}
+                    key={film.id}
+                  />
+                );
               })}
             </Columns>
           )}
