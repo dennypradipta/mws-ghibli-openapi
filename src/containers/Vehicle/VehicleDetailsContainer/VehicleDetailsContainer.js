@@ -127,7 +127,7 @@ export default class VehicleDetailsContainer extends Component {
                   <Media>
                     <Media.Item>
                       <Image
-                        src="../../images/peoples.svg"
+                        src={require("../../../images/placeholder.svg")}
                         className="is-full-image"
                       />
                     </Media.Item>
