@@ -13,13 +13,13 @@ import Heading from "react-bulma-components/lib/components/heading";
 import Content from "react-bulma-components/lib/components/content";
 import Button from "react-bulma-components/lib/components/button";
 
-export default class PeopleDetailsContainer extends Component {
+export default class SpeciesDetailsContainer extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      people: [],
-      film: [],
       species: [],
+      films: [],
+      peoples: [],
       isLoading: true,
       match: this.props.data
     };
@@ -44,19 +44,19 @@ export default class PeopleDetailsContainer extends Component {
       // Examine the text in the response
       response.json().then(function(data) {
         currentComponent.setState({
-          film: data
+          films: [...currentComponent.state.films, data]
         });
       });
     });
   }
 
-  getSpeciesByURL(url) {
+  getPeopleByURL(url) {
     let currentComponent = this;
     let id = url
       .toString()
       .split("/")
       .pop();
-    fetch("https://ghibliapi.herokuapp.com/species/" + id).then(function(
+    fetch("https://ghibliapi.herokuapp.com/people/" + id).then(function(
       response
     ) {
       if (response.status !== 200) {
@@ -69,16 +69,16 @@ export default class PeopleDetailsContainer extends Component {
       // Examine the text in the response
       response.json().then(function(data) {
         currentComponent.setState({
-          species: data
+          peoples: [...currentComponent.state.peoples, data]
         });
       });
     });
   }
 
-  getPeopleData() {
+  getSpeciesData() {
     let currentComponent = this;
     fetch(
-      "https://ghibliapi.herokuapp.com/people/" + this.state.match.params.id
+      "https://ghibliapi.herokuapp.com/species/" + this.state.match.params.id
     ).then(function(response) {
       if (response.status !== 200) {
         console.log(
@@ -90,16 +90,20 @@ export default class PeopleDetailsContainer extends Component {
       // Examine the text in the response
       response.json().then(function(data) {
         currentComponent.setState({
-          people: data
+          species: data
         });
-        currentComponent.getFilmByURL(data.films);
-        currentComponent.getSpeciesByURL(data.species);
+        data.films.map(film => {
+          currentComponent.getFilmByURL(film);
+        });
+        data.people.map(people => {
+          currentComponent.getPeopleByURL(people);
+        });
       });
     });
   }
 
   componentWillMount() {
-    this.getPeopleData();
+    this.getSpeciesData();
   }
 
   render() {
@@ -109,14 +113,14 @@ export default class PeopleDetailsContainer extends Component {
           <title>
             {this.state.isLoading
               ? "Ghibli Studio API - Loading..."
-              : "Ghibli Studio API - " + this.state.people.name}
+              : "Ghibli Studio API - " + this.state.species.name}
           </title>
         </Helmet>
         <Container>
           <Columns>
             <Columns.Column size={12}>
               <h1 className="has-text-centered has-text-left-desktop">
-                People Details - {this.state.people.name}
+                Species Details - {this.state.species.name}
               </h1>
               <hr />
             </Columns.Column>
@@ -136,7 +140,7 @@ export default class PeopleDetailsContainer extends Component {
                       className="has-text-centered padding-top-md"
                       size={4}
                     >
-                      {this.state.people.name}
+                      {this.state.species.name}
                     </Heading>
                   </Content>
                 </Card.Content>
@@ -148,32 +152,39 @@ export default class PeopleDetailsContainer extends Component {
                   <Content>
                     <Heading size={4}>Details</Heading>
                     <hr />
-                    <p>Gender: {this.state.people.gender}</p>
-                    <p>Eye Color: {this.state.people.eye_color}</p>
-                    <p>Hair Color: {this.state.people.hair_color}</p>
+                    <p>Classification: {this.state.species.classification}</p>
+                    <p>Eye Color: {this.state.species.eye_colors}</p>
+                    <p>Hair Color: {this.state.species.hair_colors}</p>
                     <p>
                       Films :{" "}
-                      {!this.state.film == [] ? (
-                        <Button className="is-small margin-right-sm">
-                          <a href={"#/film/" + this.state.film.id}>
-                            {this.state.film.title}
-                          </a>
-                        </Button>
-                      ) : (
-                        ""
-                      )}
+                      {!this.state.films == []
+                        ? this.state.films.map(film => {
+                            return (
+                              <Button className="is-small margin-right-sm">
+                                <a href={"#/film/" + film.id} key={film.id}>
+                                  {film.title}
+                                </a>
+                              </Button>
+                            );
+                          })
+                        : ""}
                     </p>
                     <p>
-                      Species :{" "}
-                      {!this.state.species == [] ? (
-                        <Button className="is-small margin-right-sm">
-                          <a href={"#/species/" + this.state.species.id}>
-                            {this.state.species.name}
-                          </a>
-                        </Button>
-                      ) : (
-                        ""
-                      )}
+                      People :{" "}
+                      {!this.state.peoples == []
+                        ? this.state.peoples.map(people => {
+                            return (
+                              <Button className="is-small margin-right-sm">
+                                <a
+                                  href={"#/people/" + people.id}
+                                  key={people.id}
+                                >
+                                  {people.name}
+                                </a>
+                              </Button>
+                            );
+                          })
+                        : ""}
                     </p>
                   </Content>
                 </Card.Content>
