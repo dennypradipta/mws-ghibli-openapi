@@ -5,7 +5,7 @@ import Container from "react-bulma-components/lib/components/container";
 import Columns from "react-bulma-components/lib/components/columns";
 import Loader from "react-bulma-components/lib/components/loader";
 
-import CustomCard from "../../components/CustomCard/CustomCard";
+import CustomCard from "../../../components/CustomCard/CustomCard";
 
 export default class FilmContainer extends Component {
   constructor(props) {

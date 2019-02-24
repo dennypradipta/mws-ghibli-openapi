@@ -5,7 +5,8 @@ import { AnimatedSwitch } from "react-router-transition";
 
 import NavigationBar from "../../components/NavigationBar/NavigationBar";
 import HomeContainer from "../HomeContainer/HomeContainer";
-import FilmContainer from "../FilmContainer/FilmContainer";
+import FilmContainer from "../Film/FilmContainer/FilmContainer";
+import FilmDetailsContainer from "../Film/FilmDetailsContainer/FilmDetailsContainer";
 import PeopleContainer from "../PeopleContainer/PeopleContainer";
 import LocationContainer from "../LocationContainer/LocationContainer";
 import SpeciesContainer from "../SpeciesContainer/SpeciesContainer";
@@ -29,6 +30,10 @@ export default class RootContainer extends Component {
             >
               <Route exact path="/" render={() => <HomeContainer />} />
               <Route path="/films" render={() => <FilmContainer />} />
+              <Route
+                path={"/film/:id"}
+                render={props => <FilmDetailsContainer data={props.match} />}
+              />
               <Route path="/peoples" render={() => <PeopleContainer />} />
               <Route path="/locations" render={() => <LocationContainer />} />
               <Route path="/species" render={() => <SpeciesContainer />} />
