@@ -13,13 +13,13 @@ import Heading from "react-bulma-components/lib/components/heading";
 import Content from "react-bulma-components/lib/components/content";
 import Button from "react-bulma-components/lib/components/button";
 
-export default class LocationDetailsContainer extends Component {
+export default class VehicleDetailsContainer extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      residents: [],
-      films: [],
-      location: [],
+      pilot: [],
+      film: [],
+      vehicle: [],
       isLoading: true,
       match: this.props.data
     };
@@ -44,13 +44,13 @@ export default class LocationDetailsContainer extends Component {
       // Examine the text in the response
       response.json().then(function(data) {
         currentComponent.setState({
-          films: [...currentComponent.state.films, data]
+          film: data
         });
       });
     });
   }
 
-  getResidentsByURL(url) {
+  getPilotByURL(url) {
     let currentComponent = this;
     let id = url
       .toString()
@@ -69,16 +69,16 @@ export default class LocationDetailsContainer extends Component {
       // Examine the text in the response
       response.json().then(function(data) {
         currentComponent.setState({
-          residents: [...currentComponent.state.residents, data]
+          pilot: data
         });
       });
     });
   }
 
-  getLocationData() {
+  getVehicleData() {
     let currentComponent = this;
     fetch(
-      "https://ghibliapi.herokuapp.com/locations/" + this.state.match.params.id
+      "https://ghibliapi.herokuapp.com/vehicles/" + this.state.match.params.id
     ).then(function(response) {
       if (response.status !== 200) {
         console.log(
@@ -90,21 +90,17 @@ export default class LocationDetailsContainer extends Component {
       // Examine the text in the response
       response.json().then(function(data) {
         currentComponent.setState({
-          location: data,
+          vehicle: data,
           isLoading: false
         });
-        data.films.map(film => {
-          currentComponent.getFilmByURL(film);
-        });
-        data.residents.map(resident => {
-          currentComponent.getResidentsByURL(resident);
-        });
+        currentComponent.getFilmByURL(data.films);
+        currentComponent.getPilotByURL(data.pilot);
       });
     });
   }
 
   componentWillMount() {
-    this.getLocationData();
+    this.getVehicleData();
   }
 
   render() {
@@ -114,14 +110,14 @@ export default class LocationDetailsContainer extends Component {
           <title>
             {this.state.isLoading
               ? "Ghibli Studio API - Loading..."
-              : "Ghibli Studio API - " + this.state.location.name}
+              : "Ghibli Studio API - " + this.state.vehicle.name}
           </title>
         </Helmet>
         <Container>
           <Columns>
             <Columns.Column size={12}>
               <h1 className="has-text-centered has-text-left-desktop">
-                Location Details - {this.state.location.name}
+                Vehicle Details - {this.state.vehicle.name}
               </h1>
               <hr />
             </Columns.Column>
@@ -141,7 +137,7 @@ export default class LocationDetailsContainer extends Component {
                       className="has-text-centered padding-top-md"
                       size={4}
                     >
-                      {this.state.location.name}
+                      {this.state.vehicle.name}
                     </Heading>
                   </Content>
                 </Card.Content>
@@ -151,43 +147,39 @@ export default class LocationDetailsContainer extends Component {
               <Card>
                 <Card.Content>
                   <Content>
-                    <Heading size={4}>Details</Heading>
-                    <hr />
-                    <p>Climate: {this.state.location.climate}</p>
-                    <p>Terrain: {this.state.location.terrain}</p>
-                    <p>Surface Water: {this.state.location.surface_Water}</p>
-                    <p>
-                      Residents :{" "}
-                      {!this.state.residents == []
-                        ? this.state.residents.map(resident => {
-                            return (
-                              <Button
-                                className="is-small margin-right-sm"
-                                key={resident.id}
-                              >
-                                <a href={"#/people/" + resident.id}>
-                                  {resident.name}
-                                </a>
-                              </Button>
-                            );
-                          })
-                        : ""}
-                    </p>
-                    <p>
-                      Films :{" "}
-                      {!this.state.films == []
-                        ? this.state.films.map(film => {
-                            return (
-                              <Button
-                                className="is-small margin-right-sm"
-                                key={film.id}
-                              >
-                                <a href={"#/film/" + film.id}>{film.title}</a>
-                              </Button>
-                            );
-                          })
-                        : ""}
-                    </p>
+                    <div>
+                      <Heading size={4}>Description</Heading>
+                      <hr />
+                      <p>{this.state.vehicle.description}</p>
+                    </div>
+                    <div className="padding-top-md">
+                      <Heading size={4}>Details</Heading>
+                      <hr />
+                      <p>Vehicle Class: {this.state.vehicle.vehicle_class}</p>
+                      <p>Length: {this.state.vehicle.length + " meters"}</p>
+                      <p>
+                        Pilot:{" "}
+                        <Button
+                          className="is-small margin-right-sm"
+                          key={this.state.pilot.id}
+                        >
+                          <a href={"#/people/" + this.state.pilot.id}>
+                            {this.state.pilot.name}
+                          </a>
+                        </Button>
+                      </p>
+                      <p>
+                        Films:{" "}
+                        <Button
+                          className="is-small margin-right-sm"
+                          key={this.state.film.id}
+                        >
+                          <a href={"#/film/" + this.state.film.id}>
+                            {this.state.film.title}
+                          </a>
+                        </Button>
+                      </p>
+                    </div>
                   </Content>
                 </Card.Content>
               </Card>

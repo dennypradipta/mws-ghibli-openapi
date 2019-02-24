@@ -78,7 +78,7 @@ var docsConfig = Object.assign({}, config, {
       },
       {
         test: /\.(woff2?|jpe?g|png|gif|ico|svg)$/,
-        use: "file-loader?name=./images/[name].[ext]"
+        use: "file-loader?name=./docs/images/[name].[ext]"
       }
     ]
   },
