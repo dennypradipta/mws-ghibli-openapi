@@ -90,7 +90,8 @@ export default class SpeciesDetailsContainer extends Component {
       // Examine the text in the response
       response.json().then(function(data) {
         currentComponent.setState({
-          species: data
+          species: data,
+          isLoading: false
         });
         data.films.map(film => {
           currentComponent.getFilmByURL(film);
@@ -160,10 +161,11 @@ export default class SpeciesDetailsContainer extends Component {
                       {!this.state.films == []
                         ? this.state.films.map(film => {
                             return (
-                              <Button className="is-small margin-right-sm">
-                                <a href={"#/film/" + film.id} key={film.id}>
-                                  {film.title}
-                                </a>
+                              <Button
+                                className="is-small margin-right-sm"
+                                key={film.id}
+                              >
+                                <a href={"#/film/" + film.id}>{film.title}</a>
                               </Button>
                             );
                           })
@@ -174,11 +176,11 @@ export default class SpeciesDetailsContainer extends Component {
                       {!this.state.peoples == []
                         ? this.state.peoples.map(people => {
                             return (
-                              <Button className="is-small margin-right-sm">
-                                <a
-                                  href={"#/people/" + people.id}
-                                  key={people.id}
-                                >
+                              <Button
+                                className="is-small margin-right-sm"
+                                key={people.id}
+                              >
+                                <a href={"#/people/" + people.id}>
                                   {people.name}
                                 </a>
                               </Button>

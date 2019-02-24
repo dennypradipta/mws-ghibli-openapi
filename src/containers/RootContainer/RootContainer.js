@@ -4,16 +4,18 @@ import { HashRouter as Router } from "react-router-dom";
 import { AnimatedSwitch } from "react-router-transition";
 
 import NavigationBar from "../../components/NavigationBar/NavigationBar";
+import NotFoundContainer from "../NotFoundContainer/NotFoundContainer";
+
 import HomeContainer from "../HomeContainer/HomeContainer";
 import FilmContainer from "../Film/FilmContainer/FilmContainer";
 import SpeciesContainer from "../Species/SpeciesContainer/SpeciesContainer";
 import PeopleContainer from "../People/PeopleContainer/PeopleContainer";
-import LocationContainer from "../LocationContainer/LocationContainer";
+import LocationContainer from "../Location/LocationContainer/LocationContainer";
 import VehiclesContainer from "../VehiclesContainer/VehiclesContainer";
-import NotFoundContainer from "../NotFoundContainer/NotFoundContainer";
 
 import FilmDetailsContainer from "../Film/FilmDetailsContainer/FilmDetailsContainer";
 import PeopleDetailsContainer from "../People/PeopleDetailsContainer/PeopleDetailsContainer";
+import LocationDetailsContainer from "../Location/LocationDetailsContainer/LocationDetailsContainer";
 import SpeciesDetailsContainer from "../Species/SpeciesDetailsContainer/SpeciesDetailsContainer";
 
 import Container from "react-bulma-components/lib/components/container";
@@ -56,6 +58,12 @@ export default class RootContainer extends Component {
               <Route
                 path={"/people/:id"}
                 render={props => <PeopleDetailsContainer data={props.match} />}
+              />
+              <Route
+                path={"/location/:id"}
+                render={props => (
+                  <LocationDetailsContainer data={props.match} />
+                )}
               />
               <Route
                 path={"/species/:id"}
