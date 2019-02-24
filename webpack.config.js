@@ -86,11 +86,7 @@ var docsConfig = Object.assign({}, config, {
     extensions: ["*", ".js", ".jsx"],
     modules: ["node_modules", "src"]
   },
-  plugins: [
-    new CopyWebpackPlugin([
-      { from: "src/images", to: "mws-ghibli-openapi/images" }
-    ])
-  ],
+  plugins: [new CopyWebpackPlugin([{ from: "src/images", to: "images" }])],
   output: {
     path: __dirname + "/docs",
     publicPath: "/",
