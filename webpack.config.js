@@ -78,7 +78,7 @@ var docsConfig = Object.assign({}, config, {
       },
       {
         test: /\.(woff2?|jpe?g|png|gif|ico|svg)$/,
-        use: "file-loader?name=./docs/images/[name].[ext]"
+        use: "file-loader?name=./mws-ghibli-openapi/images/[name].[ext]"
       }
     ]
   },
@@ -86,7 +86,7 @@ var docsConfig = Object.assign({}, config, {
     extensions: ["*", ".js", ".jsx"],
     modules: ["node_modules", "src"]
   },
-  plugins: [new CopyWebpackPlugin([{ from: "src/images", to: "docs/images" }])],
+  plugins: [new CopyWebpackPlugin([{ from: "src/images", to: "images" }])],
   output: {
     path: __dirname + "/docs",
     publicPath: "/",
