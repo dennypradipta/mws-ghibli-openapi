@@ -1,5 +1,6 @@
 import React from "react";
 import { Component } from "react";
+import { Helmet } from "react-helmet";
 
 import Container from "react-bulma-components/lib/components/container";
 import Columns from "react-bulma-components/lib/components/columns";
@@ -39,6 +40,9 @@ export default class VehiclesContainer extends Component {
   render() {
     return (
       <div>
+        <Helmet>
+          <title>{"Ghibli Studio API - All Vehicles"}</title>
+        </Helmet>
         <Container>
           <h1 className="has-text-centered has-text-left-desktop">
             List of Vehicles

@@ -1,10 +1,14 @@
 import React from "react";
+import { Helmet } from "react-helmet";
 
 import Container from "react-bulma-components/lib/components/container";
 
 const HomeContainer = () => {
   return (
     <div>
+      <Helmet>
+        <title>{"Ghibli Studio API - Home"}</title>
+      </Helmet>
       <Container>
         <h1>About</h1>
         <hr />

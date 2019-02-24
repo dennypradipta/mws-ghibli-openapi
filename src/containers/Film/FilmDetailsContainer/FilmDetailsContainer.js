@@ -1,5 +1,6 @@
 import React from "react";
 import { Component } from "react";
+import { Helmet } from "react-helmet";
 
 import Container from "react-bulma-components/lib/components/container";
 import Columns from "react-bulma-components/lib/components/columns";
@@ -10,7 +11,6 @@ import Image from "react-bulma-components/lib/components/image";
 import Heading from "react-bulma-components/lib/components/heading";
 import Content from "react-bulma-components/lib/components/content";
 import Button from "react-bulma-components/lib/components/button";
-
 export default class FilmDetailsContainer extends Component {
   constructor(props) {
     super(props);
@@ -46,6 +46,13 @@ export default class FilmDetailsContainer extends Component {
   render() {
     return (
       <div>
+        <Helmet>
+          <title>
+            {this.state.isLoading
+              ? "Ghibli Studio API - Loading..."
+              : "Ghibli Studio API - " + this.state.film.title}
+          </title>
+        </Helmet>
         <Container>
           <Columns>
             <Columns.Column size={12}>

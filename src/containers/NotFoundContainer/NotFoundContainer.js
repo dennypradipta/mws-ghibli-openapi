@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Helmet } from "react-helmet";
 
 import Container from "react-bulma-components/lib/components/container";
 import Heading from "react-bulma-components/lib/components/heading";
@@ -7,6 +8,9 @@ export default class NotFoundContainer extends Component {
   render() {
     return (
       <div>
+        <Helmet>
+          <title>{"Ghibli Studio API - Not Found"}</title>
+        </Helmet>
         <Container>
           <Heading className="has-text-centered padding-top-xl" size={1}>
             404
